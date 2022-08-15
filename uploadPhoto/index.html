@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>发表心情</title>
+    <link rel="stylesheet" type="text/css" href="./index.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+</head>
+<body>
+    <div class="box" id="app">
+        <header>
+            <img src="../images/head.jpeg" />
+            <div>
+                <h2>心情存在照片里，照片流进时光里</h2>
+                <p>把开心存起来吧 😊</p>
+            </div>
+        </header>
+        <section>
+            <el-input
+            type="textarea"
+            :rows="4"
+            placeholder="发表我的心情"
+            v-model="textarea">
+            </el-input>
+            <el-upload
+            action=""
+            :before-upload="beforeUploadImg"
+            :show-file-list="false"
+            multiple>
+                <el-button type="info">
+                    照片<i class="el-icon-camera"></i>
+                </el-button>
+            </el-upload>
+            <el-upload
+            class="upload-demo"
+            action=""
+            :before-upload="beforeUploadVideo"
+            :show-file-list="false"
+            multiple>
+                <el-button type="info" class="video">
+                    视频<i class="el-icon-video-camera"></i>
+                </el-button>
+            </el-upload>
+            <el-button type="primary" @click="publish">发表</el-button>
+        </section>
+        <footer>
+            <img v-for="(item, index) in imgList" :key="index" :src="item" />
+            <video controls autoplay v-for="(item, index) in videoList" :key="index">
+                <source :src="item" type="video/mp4">
+                您的浏览器不支持 video 标签。
+            </video>
+        </footer>
+    </div>
+    <script src="./index.js"></script>
+</body>
+</html>

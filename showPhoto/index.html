@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>时光轴</title>
+    <link rel="stylesheet" type="text/css" href="./index.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+</head>
+<body>
+    <div id="app" class="box">
+        <header>
+            <img src="../images/head.jpeg" />
+            <div>
+                <h2>心情存在照片里，照片流进时光里</h2>
+                <p>把开心存起来吧 😊</p>
+            </div>
+        </header>
+        <ul>
+            <li v-for="(item, index) in fileList" :key="index">
+                <div class="header">
+                    <img src="../images/head.jpeg" />
+                    <div>
+                        <p>{{ item.date }}</p>
+                    </div>
+                </div>
+                <p>{{ item.title }}</p>
+                <div class="photo">
+                    <img v-for="(val, ind) in item.imgList" :key="ind" :src="val" />
+                    <video controls autoplay v-for="(ite, i) in item.videoList" :key="i">
+                        <source :src="ite" type="video/mp4">
+                        您的浏览器不支持 video 标签。
+                    </video>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <script src="./index.js"></script>
+</body>
+</html>
